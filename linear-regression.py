@@ -41,3 +41,20 @@ class LinearRegression:
         u = ((y - y_pred) ** 2).sum()
         v = ((y - y.mean()) ** 2).sum()
         return 1 - u/v
+
+def main():
+    num_points = 50
+    data_gen = DataGenerator(num_points)
+    x, y = data_gen.generate_data()
+    model = LinearRegression(x, y)
+    model.fit()
+    r2 = model.score(x, y)
+    print('R2 score:', r2)
+    plt.scatter(x, y)
+    x_line = np.linspace(0, 10, 100)
+    y_line = model.predict(x_line)
+    plt.plot(x_line, y_line, 'r')
+    plt.show()
+
+if __name__ == '__main__':
+    main()
