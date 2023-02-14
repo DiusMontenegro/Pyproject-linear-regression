@@ -51,23 +51,22 @@ class LinearRegression:
         # Calculate the R^2 score
         return 1 - u/v
 
+    def mean_squared_error(self, x, y):
+        # Predict y values based on the input x values
+        y_pred = self.predict(x)
+        # Calculate the mean squared error
+        mse = ((y - y_pred) ** 2).mean()
+        return mse
+
+    def mean_absolute_error(self, x, y):
+        # Predict y values based on the input x values
+        y_pred = self.predict(x)
+        # Calculate the mean absolute error
+        mae = np.abs(y - y_pred).mean()
+        return mae
+
 def main():
     num_points = 50
     # Generate data points
     data_gen = DataGenerator(num_points)
-    x, y = data_gen.generate_data()
-    # Fit linear regression model to the generated data points
-    model = LinearRegression(x, y)
-    model.fit()
-    # Calculate the R^2 score of the model
-    r2 = model.score(x, y)
-    print('R2 score:', r2)
-    # Plot the generated data points and the regression line
-    plt.scatter(x, y)
-    x_line = np.linspace(0, 10, 100)
-    y_line = model.predict(x_line)
-    plt.plot(x_line, y_line, 'r')
-    plt.show()
-
-if __name__ == '__main__':
-    main()
+    x, y = data
